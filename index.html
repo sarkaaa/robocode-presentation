@@ -1,0 +1,128 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<title>Geneticke algoritmy - Robocode</title>
+
+		<link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/night.css">
+
+		<!-- Theme used for syntax highlighting of code -->
+		<link rel="stylesheet" href="lib/css/zenburn.css">
+
+		<!-- Highlight plugin -->
+		<link rel="stylesheet" href="plugin/highlight/styles/monokai-sublime.css">
+		<script src="plugin/highlight/highlight.pack.js"></script>
+		<script>hljs.initHighlightingOnLoad();</script>
+
+		<!-- Printing and PDF exports -->
+		<script>
+			var link = document.createElement( 'link' );
+			link.rel = 'stylesheet';
+			link.type = 'text/css';
+			link.href = window.location.search.match( /print-pdf/gi ) ? 'css/print/pdf.css' : 'css/print/paper.css';
+			document.getElementsByTagName( 'head' )[0].appendChild( link );
+		</script>
+	</head>
+	<body>
+		<div class="reveal">
+			<div class="slides">
+				<section>
+                    <section>
+                        <h2>
+	                      Genetické algoritmy
+                        </h2>
+						<h3>Robocode</h3>
+						<p>
+							Roman Ligocki, Veronika Doubková, Nikola Kňažeková, Ondřej Gajdušek, Šárka Chwastková
+						</p>                                          
+                    </section>
+                </section>
+				<section>
+					<h3>Cíl projektu</h3>
+					<ul>
+						<li>Použití genetických algoritmů</li>
+						<li>Nalezení nejoptimalnějšího chromozomu</li>
+						<li>Ukládání do vektorů a stromů</li>
+						<li>Vytvoření evoluce, mutace, křížení a výpočtu fitness funkce</li>
+					</ul>
+                    </section>
+                    <section>
+						<h3>Evoluce</h3>
+						<ul>
+							<li>Vytvoření chromozomů</li>
+							<li>Křížení chromozomů</li>
+							<li>Mutace chromozomů</li>
+							<li>Výběr nejlepších tanků a jejich fitness funkcí</li>
+							<li>Vytvoření grafů</li>
+						</ul>
+					</section>
+					<section>
+						<h3>Mutace</h3>
+						<pre>
+						<code class="java" style="overflow: visible;">
+public void mutate(Chromosome chrom) {
+	Random rnd = new Random();
+	for (int i = 0; i < 0.1 * Config.getNumOfGenes(); i++) {
+		int randomNumber = rnd.nextInt(Config.getNumOfGenes());
+		Gene gene = chrom.getGene(randomNumber);
+		Gene gene2 = new Gene();
+		gene.type = gene2.type;
+		gene.value = gene2.value;
+	}
+}
+						</code>
+					</section>
+					<section>
+						<h3>Křížení</h3>
+						<pre>
+						<code class="java" style="overflow: visible;">
+public void crossover(Chromosome chrom1, Chromosome chrom2) {
+	Random rnd = new Random();
+	for (int i = 0; i < 0.1 * Config.getNumOfGenes(); i++) {
+		int randomNumber = rnd.nextInt(Config.getNumOfGenes());
+		Gene gen1 = chrom1.getGene(randomNumber);
+		Gene gen2 = chrom2.getGene(randomNumber);
+		int gen1Type = gen1.type;
+		double gen1Value = gen1.value;
+		gen1.type = gen2.type;
+		gen1.value = gen2.value;
+		gen2.type = gen1Type;
+		gen2.value = gen1Value;
+	}
+}
+					</code>
+					</pre>
+					</section>
+					<section>
+						<h3>Fitness funkce</h3>
+                    </section>
+                    <section>
+                    	<h3>Dosažené výsledky</h3>
+					</section>
+					<section>
+						<h3>Děkujeme za pozornost.</h3>
+					</section>
+			</div>
+		</div>
+
+		<script src="lib/js/head.min.js"></script>
+		<script src="js/reveal.js"></script>
+
+		<script>
+			// More info about config & dependencies:
+			// - https://github.com/hakimel/reveal.js#configuration
+			// - https://github.com/hakimel/reveal.js#dependencies
+			Reveal.initialize({
+				dependencies: [
+					{ src: 'plugin/markdown/marked.js' },
+					{ src: 'plugin/markdown/markdown.js' },
+					{ src: 'plugin/notes/notes.js', async: true },
+					{ src: 'plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } }
+				]
+			});
+		</script>
+	</body>
+</html>
